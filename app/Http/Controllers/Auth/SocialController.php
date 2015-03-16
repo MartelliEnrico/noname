@@ -20,7 +20,7 @@ class SocialController extends Controller {
 
 		$registrar->login($provider, $user);
 
-		return redirect('/');
+		return redirect()->intended('/');
 	}
 
 }
