@@ -2,6 +2,7 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Services\SocialRegistrar;
 
 use Illuminate\Http\Request;
 use Socialize;
@@ -13,11 +14,11 @@ class SocialController extends Controller {
 		return Socialize::with($provider)->redirect();
 	}
 
-	public function handleProviderCallback($provider)
+	public function handleProviderCallback($provider, SocialRegistrar $registrar)
 	{
 		$user = Socialize::with($provider)->user();
 
-		// TODO: do some stuff with the user
+		$registrar->login($provider, $user);
 
 		return redirect('/');
 	}
