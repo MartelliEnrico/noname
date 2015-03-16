@@ -34,4 +34,28 @@ return [
 		'secret' => '',
 	],
 
+	'facebook' => [
+		'client_id' => env('FACEBOOK_CLIENT_ID'),
+		'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
+		'redirect' => 'http://your-callback-url',
+	],
+
+	'google' => [
+		'client_id' => env('GOOGLE_CLIENT_ID'),
+		'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+		'redirect' => 'http://your-callback-url',
+	],
+
+	'twitter' => [
+		'client_id' => env('TWITTER_CLIENT_ID'),
+		'client_secret' => env('TWITTER_CLIENT_SECRET'),
+		'redirect' => 'http://your-callback-url',
+	],
+
+	'soundcloud' => [
+		'client_id' => env('SOUNDCLOUD_CLIENT_ID'),
+		'client_secret' => env('SOUNDCLOUD_CLIENT_SECRET'),
+		'redirect' => 'http://your-callback-url',
+	]
+
 ];

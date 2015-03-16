@@ -144,6 +144,9 @@ return [
 		'App\Providers\ConfigServiceProvider',
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
+		'App\Providers\SocialiteServiceProvider',
+
+		'Laravel\Socialite\SocialiteServiceProvider',
 
 	],
 
@@ -192,6 +195,8 @@ return [
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
+
+		'Socialize' => 'Laravel\Socialite\Facades\Socialite',
 
 	],
 
