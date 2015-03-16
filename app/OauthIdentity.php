@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class OauthIdentity extends Model {
+class OAuthIdentity extends Model {
 
 	public function user()
 	{
