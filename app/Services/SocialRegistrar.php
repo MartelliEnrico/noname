@@ -21,18 +21,21 @@ class SocialRegistrar {
 
 	protected function getUser($provider, $details)
 	{
-		if ($user = $this->getExistingUser($provider, $details)) {
-            return $user;
+		try
+        {
+        	return $this->getExistingUser($provider, $details);
         }
-
-        return new User;
+        catch(\Exception $e)
+        {
+        	return new User;
+        }
 	}
 
 	protected function getExistingUser($provider, $details)
 	{
 		return OAuthIdentity::whereProvider($provider)
-				->whereProviderUserId($details->id)->first()
-				->user()->first();
+				->whereProviderUserId($details->id)->firstOrFail()
+				->user()->firstOrFail();
 	}
 
 	protected function bindUserdata($user, $details)
