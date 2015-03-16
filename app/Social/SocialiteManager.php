@@ -1,6 +1,6 @@
 <?php namespace App\Social;
 
-use Laravel\Socialite\SocialiteManager;
+use Laravel\Socialite\SocialiteManager as Manager;
 
 class SocialiteManager extends Manager {
 

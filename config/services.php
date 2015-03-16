@@ -55,7 +55,7 @@ return [
 	'soundcloud' => [
 		'client_id' => env('SOUNDCLOUD_CLIENT_ID'),
 		'client_secret' => env('SOUNDCLOUD_CLIENT_SECRET'),
-		'redirect' => 'http://your-callback-url',
+		'redirect' => 'http://noname.app/soundcloud/login',
 	]
 
 ];

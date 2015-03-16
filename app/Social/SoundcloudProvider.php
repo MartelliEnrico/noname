@@ -37,7 +37,20 @@ class SoundcloudProvider extends AbstractProvider implements ProviderInterface {
 	protected function getUserByToken($token)
 	{
 		$response = $this->getHttpClient()->get('https://api.soundcloud.com/me.json?oauth_token='.$token);
+
 		return json_decode($response->getBody(), true);
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	protected function getTokenFields($code)
+	{
+		return [
+			'client_id' => $this->clientId, 'client_secret' => $this->clientSecret,
+			'code' => $code, 'redirect_uri' => $this->redirectUrl,
+			'grant_type' => 'authorization_code'
+		];
 	}
 
 	/**
