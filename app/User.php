@@ -49,4 +49,41 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		return $this->hasMany('App\OAuthIdentity');
 	}
 
+	public function setNameAttribute($name)
+	{
+		$name = str_replace(" ", "", $name);
+
+		$list = $this->newQuery()->where('name', 'LIKE', "$name%")->lists('name', 'id');
+
+		if(! $this->nameIsUnique($list, $name))
+		{
+			$name = $this->getUniqueName($list, $name);
+		}
+
+		$this->attributes['name'] = $name;
+	}
+
+	protected function nameIsUnique($list, $name)
+	{
+		return count($list) === 0
+				|| ! in_array($name, $list)
+				|| (array_key_exists('id', $list) && $list['id'] === $name);
+	}
+
+	protected function getUniqueName($list, $name)
+	{
+		$length = strlen("$name.");
+
+		array_walk($list, function(&$value, $key) use ($length)
+		{
+			$value = intval(substr($value, $length));
+		});
+
+		rsort($list);
+
+		$increment = reset($list) + 1;
+
+		return "$name.$increment";
+	}
+
 }

@@ -30,7 +30,7 @@ class SocialRegistrar {
 
 		if($details->email !== null)
 		{
-			$user = User::whereEmail($email)->first();
+			$user = User::whereEmail($details->email)->first();
 
 			if($user !== null)
 			{
