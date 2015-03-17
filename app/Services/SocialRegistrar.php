@@ -75,8 +75,8 @@ class SocialRegistrar {
 
 	protected function updateAccessToken($user, $provider, $details)
 	{
-		OAuthIdentity::where('user_id', $user->getKey())
-				->where('provider', $provider)->delete();
+		OAuthIdentity::whereUserId($user->getKey())
+				->whereProvider($provider)->delete();
 
 		$this->addAccessToken($user, $provider, $details);
 	}
