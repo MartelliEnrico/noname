@@ -11,4 +11,9 @@ class OAuthIdentity extends Model {
 		return $this->belongsTo('App\User');
 	}
 
+	public function scopeForProvider($query, $provider, $userId)
+	{
+		return $query->whereProvider($provider)->whereProviderUserId($userId);
+	}
+
 }

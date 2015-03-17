@@ -12,39 +12,58 @@ class SocialRegistrar {
 	{
 		$user = $this->getUser($provider, $details);
 
-        $user = $this->bindUserData($user, $details);
+		$user = $this->bindUserData($user, $details);
 
-        $this->updateUser($user, $provider, $details);
+		$this->updateUser($user, $provider, $details);
 
-        Auth::login($user);
+		Auth::login($user);
 	}
 
 	protected function getUser($provider, $details)
 	{
-		try
-        {
-        	return $this->getExistingUser($provider, $details);
-        }
-        catch(\Exception $e)
-        {
-        	return new User;
-        }
-	}
+		$identity = OAuthIdentity::forProvider($provider, $details->id)->first();
 
-	protected function getExistingUser($provider, $details)
-	{
-		return OAuthIdentity::whereProvider($provider)
-				->whereProviderUserId($details->id)->firstOrFail()
-				->user()->firstOrFail();
+		if($identity !== null)
+		{
+			return $identity->user()->first();
+		}
+
+		if($details->email !== null)
+		{
+			$user = User::whereEmail($email)->first();
+
+			if($user !== null)
+			{
+				return $user;
+			}
+		}
+
+		return new User;
 	}
 
 	protected function bindUserdata($user, $details)
 	{
-		$user->name = $details->nickname ?: $details->name;
-		$user->email = $details->email;
-		$user->avatar = $details->avatar;
+		if($user->name === null && $this->getNameForUser($details) !== null)
+		{
+			$user->name = $this->getNameForUser($details);
+		}
+
+		if($user->email === null && $details->email !== null)
+		{
+			$user->email = $details->email;
+		}
+
+		if($user->avatar === null && $details->avatar !== null)
+		{
+			$user->avatar = $details->avatar;
+		}
 
 		return $user;
+	}
+
+	protected function getNameForUser($details)
+	{
+		return $details->nickname ?: $details->name;
 	}
 
 	protected function updateUser($user, $provider, $details)
