@@ -18,5 +18,7 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
+Route::get('video/create','VideoController@create');
+
 Route::get('{provider}/authorize', 'Auth\SocialController@redirectToProvider');
 Route::get('{provider}/login', 'Auth\SocialController@handleProviderCallback');
