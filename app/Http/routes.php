@@ -19,6 +19,7 @@ Route::controllers([
 ]);
 
 Route::get('video/create','VideoController@create');
+Route::post('video','VideoController@store');
 
 Route::get('{provider}/authorize', 'Auth\SocialController@redirectToProvider');
 Route::get('{provider}/login', 'Auth\SocialController@handleProviderCallback');
