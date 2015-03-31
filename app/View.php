@@ -4,9 +4,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class View extends Model {
 
-	public function video()
+	public function song()
 	{
-		return $this->belongsTo('App\Video');
+		return $this->belongsTo('App\Song');
 	}
 
 	public function user()

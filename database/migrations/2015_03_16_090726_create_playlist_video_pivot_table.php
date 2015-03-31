@@ -12,12 +12,12 @@ class CreatePlaylistVideoPivotTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('playlist_video', function(Blueprint $table)
+		Schema::create('playlist_song', function(Blueprint $table)
 		{
 			$table->integer('playlist_id')->unsigned()->index();
 			$table->foreign('playlist_id')->references('id')->on('playlists')->onDelete('cascade');
-			$table->integer('video_id')->unsigned()->index();
-			$table->foreign('video_id')->references('id')->on('videos')->onDelete('cascade');
+			$table->integer('song_id')->unsigned()->index();
+			$table->foreign('song_id')->references('id')->on('songs')->onDelete('cascade');
 		});
 	}
 
@@ -28,7 +28,7 @@ class CreatePlaylistVideoPivotTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('playlist_video');
+		Schema::drop('playlist_song');
 	}
 
 }

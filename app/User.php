@@ -24,9 +24,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 	protected $hidden = ['password', 'remember_token'];
 
-	public function videos()
+	public function songs()
 	{
-		return $this->hasMany('App\Video');
+		return $this->hasMany('App\Song');
 	}
 
 	public function playlists()

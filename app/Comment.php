@@ -16,9 +16,9 @@ class Comment extends Model {
 		return $this->belongsTo('App\User');
 	}
 
-	public function video()
+	public function song()
 	{
-		return $this->belongsTo('App\Video');
+		return $this->belongsTo('App\Song');
 	}
 
 	public function likes()

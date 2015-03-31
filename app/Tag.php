@@ -11,9 +11,9 @@ class Tag extends Model {
 	 */
 	protected $fillable = ['name'];
 
-	public function videos()
+	public function songs()
 	{
-		return $this->hasMany('App\Video');
+		return $this->hasMany('App\Song');
 	}
 
 }

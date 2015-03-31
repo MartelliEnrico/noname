@@ -7,12 +7,12 @@
 	"require": {
 		"laravel/framework": "5.0.*",
 		"laravel/socialite": "~2.0",
-		"socialiteproviders/soundcloud": "~1.0"
+		"socialiteproviders/soundcloud": "~1.0",
+		"laravelcollective/html": "~5.0",
+		"predis/predis": "~1.0"
 	},
 	"require-dev": {
 		"laracasts/generators": "~1.1",
-		"phpunit/phpunit": "~4.0",
-		"phpspec/phpspec": "~2.1",
 		"laracasts/testdummy": "~2.1"
 	},
 	"autoload": {

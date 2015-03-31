@@ -11,15 +11,12 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::resource('/', 'SongsController', ['except' => 'create']);
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
-
-Route::get('video/create','VideoController@create');
-Route::post('video','VideoController@store');
 
 Route::get('{provider}/authorize', 'Auth\SocialController@redirectToProvider');
 Route::get('{provider}/login', 'Auth\SocialController@handleProviderCallback');
