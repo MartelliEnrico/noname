@@ -1,5 +1,7 @@
 <?php namespace App\Services;
 
+use InvalidArgumentException;
+
 class SongsProvider {
 
 	protected $providers = [
@@ -13,13 +15,13 @@ class SongsProvider {
 		foreach ($this->providers as $name) {
 			$provider = app($name);
 
-			if($provider->urlMatch($songUrl))
+			if($provider->urlMatch(trim($songUrl)))
 			{
 				return $provider->getSimpleName();
 			}
 		}
 
-		return null;
+		throw new InvalidArgumentException("The url is not supported.");
 	}
 
 }

@@ -6,7 +6,14 @@ use App\Services\SongsProvider;
 
 use Illuminate\Http\Request;
 
+use Auth;
+
 class SongsController extends Controller {
+
+	public function __construct()
+	{
+		$this->middleware('auth', ['except' => ['index', 'show']]);
+	}
 
 	/**
 	 * Display a listing of the resource.
@@ -31,18 +38,12 @@ class SongsController extends Controller {
 			'url' => 'required|string'
 		]);
 
-		$provider = $songs->getProviderFromUrl($request->get('url'));
+		$url = $request->get('url');
+		$provider = $songs->getProviderFromUrl($url);
 
-		if($provider === null)
-		{
-			throw \Exception('TODO');
-		}
-
-		$song = Song::create([
-			'url' => $request->get('url')
-		]);
-
-		$song->provider = $provider;
+		$song = new Song;
+		$song->url = $url;
+		$song->source = $provider;
 		$song->user_id = Auth::id();
 		$song->save();
 
