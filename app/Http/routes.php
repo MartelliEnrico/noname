@@ -20,3 +20,8 @@ Route::controllers([
 
 Route::get('{provider}/authorize', 'Auth\SocialController@redirectToProvider');
 Route::get('{provider}/login', 'Auth\SocialController@handleProviderCallback');
+
+get('jsx', function()
+{
+	return view('jsx');
+});
